@@ -36,7 +36,34 @@ function conversion_html(tableau)
   chaine += '</table>'
   return chaine
 }
+///////////////////////////////////////////////////
+function ajouter_dans_fichier (reponse,res){
 
+  fs.readFile(__dirname + '/public/data/membres.json', (err, data)=>{
+  if(err)  return console.log(err)
+
+
+
+  let dataJSON = JSON.parse(data)
+  console.log('util.inspect(dataJSON) = ' + util.inspect(dataJSON));
+
+  console.log('util.inspect(reponse) = ' + util.inspect(reponse)); 
+  //console.log('util.inspect(dataJSON).push = ' + util.inspect(dataJSON.push(reponse)));
+  dataJSON.push(reponse)
+  let nouveauData = JSON.stringify(dataJSON)
+
+
+
+  fs.writeFile(__dirname + '/public/data/membres.json', nouveauData, (err, resultat)=>{
+    if (err) return cosole.log(err)
+    console.log('fichier sauvegardé')
+    res.end(JSON.stringify(reponse));
+
+  })
+})
+
+
+}
 
 ///////////////////////////////////////////////////////////// Route pour le formulaire GET 
 app.get('/html/01_form_get.htm', function (req, res) {
@@ -61,51 +88,28 @@ app.get('/traiter_get', function (req, res) {
 console.log('la route /traiter_get')
 
 // on utilise l'objet req.query pour récupérer les données GET
-
-
-fs.readFile(__dirname + '/public/data/membres.json', (err, data)=>{
-  if(err)  return console.log(err)
-
-
-
-  let dataJSON = JSON.parse(data)
-  console.log('util.inspect(dataJSON) = ' + util.inspect(dataJSON));
   let reponse = {
    prenom:req.query.prenom,
    nom:req.query.nom,
    telephone : req.query.telephone,
    courriel : req.query.courriel
    };
-  console.log('util.inspect(reponse) = ' + util.inspect(reponse)); 
-  //console.log('util.inspect(dataJSON).push = ' + util.inspect(dataJSON.push(reponse)));
-  dataJSON.push(reponse)
-  let nouveauData = JSON.stringify(dataJSON)
+ ajouter_dans_fichier(reponse, res)
 
-
-
-  fs.writeFile(__dirname + '/public/data/membres.json', nouveauData, (err, resultat)=>{
-    if (err) return cosole.log(err)
-    console.log('fichier sauvegardé')
-    res.end(JSON.stringify(reponse));
-
-  })
-})
-
- 
 })
 ///////////////////////////////////////////////////////// Route pour le traitement du formulaire post
 app.post('/traiter_post', urlencodedParser, function (req, res) {
  // Preparer l'output en format JSON 
 
   let reponse = {
-   prenom:req.query.prenom,
-   nom:req.query.nom,
-   telephone : req.query.telephone,
-   courriel : req.query.courriel
+   prenom:req.body.prenom,
+   nom:req.body.nom,
+   telephone : req.body.telephone,
+   courriel : req.body.courriel
    };
-   
- console.log('reponse');
- res.end(JSON.stringify(reponse));
+
+ ajouter_dans_fichier(reponse, res)
+
 })
 
 /////////////////////////////////////////////////////////////////  route : /membres
