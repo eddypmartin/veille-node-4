@@ -88,27 +88,34 @@ app.get('/traiter_get', function (req, res) {
 console.log('la route /traiter_get')
 
 // on utilise l'objet req.query pour récupérer les données GET
+/*
   let reponse = {
    prenom:req.query.prenom,
    nom:req.query.nom,
    telephone : req.query.telephone,
    courriel : req.query.courriel
    };
- ajouter_dans_fichier(reponse, res)
+  */
+  
+
+ ajouter_dans_fichier(req.query, res)
 
 })
 ///////////////////////////////////////////////////////// Route pour le traitement du formulaire post
 app.post('/traiter_post', urlencodedParser, function (req, res) {
- // Preparer l'output en format JSON 
 
+// on utilise l'objet req.body pour récupérer les données POST
+
+/*
   let reponse = {
    prenom:req.body.prenom,
    nom:req.body.nom,
    telephone : req.body.telephone,
    courriel : req.body.courriel
    };
+*/   
 
- ajouter_dans_fichier(reponse, res)
+ ajouter_dans_fichier(req.body, res)
 
 })
 
