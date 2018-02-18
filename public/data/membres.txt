@@ -17,4 +17,4 @@
       "courriel" : "jkgkjgkj@gmail.com",
      "id": 3    
    }
-,{"prenom":"allo","nom":"toto"},{"prenom":"Gustave","nom":"Laporte"},{"prenom":"lili","nom":"lucie","telephone":"512-234-5566","courriel":"lili@hotmail.com"}
+,{"prenom":"allo","nom":"toto"},{"prenom":"Gustave","nom":"Laporte"},{"prenom":"lili","nom":"lucie","telephone":"512-234-5566","courriel":"lili@hotmail.com"},{"prenom":"Xavier","nom":"Marchand","telephone":"123-123-1234","courriel":"eddypmartin@gmail.com"}
