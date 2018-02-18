@@ -17,4 +17,4 @@
       "courriel" : "jkgkjgkj@gmail.com",
      "id": 3    
    }
-,{"prenom":"allo","nom":"toto"}
+,{"prenom":"allo","nom":"toto"},{"prenom":"Gustave","nom":"Laporte"},{"prenom":"lili","nom":"lucie","telephone":"512-234-5566","courriel":"lili@hotmail.com"}

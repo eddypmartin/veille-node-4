@@ -52,7 +52,9 @@ console.log('la route /traiter_get')
 // on utilise l'objet req.query pour récupérer les données GET
  reponse = {
  prenom:req.query.prenom,
- nom:req.query.nom
+ nom:req.query.nom,
+ telephone : req.query.telephone,
+ courriel : req.query.courriel
  };
 
  let txtReponse = JSON.stringify(reponse)
