@@ -56,7 +56,9 @@ console.log('la route /traiter_get')
  };
 
  let txtReponse = JSON.stringify(reponse)
-
+// On utilise la fonction fs.appendFile
+// pour ajouter le nouveau membre à notre fichier membre.txt 
+// on ajoute une « , » avant la « txtReponse » 
  fs.appendFile(__dirname + '/public/data/membres.txt', ',' + txtReponse, function (err) {
   if (err) throw err;
   console.log('Sauvegardé');
@@ -77,9 +79,7 @@ fs.readFile(__dirname + '/public/data/membres.txt', function (err, data) {
     res.end(conversion_html(JSON.parse('[' + data + ']')));
 });
 
-
 })
-
 
 var server = app.listen(8081, function () {
  var host = server.address().address
